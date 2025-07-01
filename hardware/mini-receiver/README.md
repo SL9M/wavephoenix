@@ -163,15 +163,15 @@ Once you have OpenOCD installed, you can flash the bootloader and application fi
 
 First we'll need to do a full device erase:
 
+##### Linux / macOS
 ```bash
-# Linux / macOS
 openocd -f "interface/cmsis-dap.cfg" \
         -f "target/efm32s2.cfg" \
         -c "init; efm32s2_dci_device_erase; shutdown"
 ```
 
+##### Windows (PowerShell)
 ```powershell
-# Windows (PowerShell)
 openocd.exe -f "interface\cmsis-dap.cfg" `
             -f "target\efm32s2.cfg" `
             -c "init; efm32s2_dci_device_erase; shutdown"
@@ -184,16 +184,16 @@ openocd.exe -f "interface\cmsis-dap.cfg" `
 
 Then we can flash the bootloader:
 
+##### Linux / macOS
 ```bash
-# Linux / macOS
 openocd -f "interface/cmsis-dap.cfg" \
         -c "transport select swd" \
         -f "target/efm32s2.cfg" \
         -c "init; halt; flash write_image erase bootloader.hex; exit"
 ```
 
+##### Windows (PowerShell)
 ```powershell
-# Windows (PowerShell)
 openocd.exe -f "interface\cmsis-dap.cfg" `
             -c "transport select swd" `
             -f "target\efm32s2.cfg" `
@@ -207,16 +207,16 @@ openocd.exe -f "interface\cmsis-dap.cfg" `
 
 Since we already have the device wired up, we can also flash the receiver application using SWD:
 
+##### Linux / macOS
 ```bash
-# Linux / macOS
 openocd -f interface/cmsis-dap.cfg \
         -c "transport select swd" \
         -f target/efm32s2.cfg \
         -c "init; halt; flash write_image erase receiver.hex; exit"
 ```
 
+##### Windows
 ```powershell
-# Windows
 openocd.exe -f interface\cmsis-dap.cfg `
             -c "transport select swd" `
             -f target\efm32s2.cfg `
